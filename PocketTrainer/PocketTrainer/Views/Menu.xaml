@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PocketTrainer"
+             xmlns:views="clr-namespace:PocketTrainer.Views;assembly=PocketTrainer"
+             x:Class="PocketTrainer.Menu">
+
+    <Shell.FlyoutHeader>
+        <Grid HeightRequest="150" Padding="0">
+            <Grid.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#1d542d" Offset="0.2"/>
+                    <GradientStop Color="#34a355" Offset="0.8"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Image Source="{local:ImageResource PocketTrainer.Images.pckicon.png}" Aspect="AspectFill"></Image>
+            <Label Text="Version 1.0.0" TextColor="Beige" VerticalOptions="End" HorizontalOptions="End" Margin="4"></Label>
+        </Grid>
+    </Shell.FlyoutHeader>
+    
+          <FlyoutItem Title="MyTabApp"
+                      Shell.TabBarIsVisible="False"
+                      Shell.ForegroundColor="White"
+                      Shell.BackgroundColor="#1d542d"
+                      FlyoutDisplayOptions="AsMultipleItems">
+              <ShellContent Title="Главная" IsTabStop="True" Icon="ic_action_main.png" ContentTemplate="{DataTemplate views:MainView}"/>
+              <ShellContent Title="Список программ тренировок" Icon="ic_action_sports.png" IsTabStop="True"/>
+              <ShellContent Title="Список упражнений" ContentTemplate="{DataTemplate views:MuscleGroupsView}" Icon="split.png" IsTabStop="True"/>
+              <ShellContent Title="Расчёт индекса массы тела" Icon="ic_action_calculate.png" IsTabStop="True"></ShellContent>
+              <ShellContent Title="Статистика" Icon="ic_action_show_chart.png" IsTabStop="True"/>
+              <ShellContent Title="Заметки" Icon="notepad.png" IsTabStop="True"/>
+          </FlyoutItem>
+    <Shell.FlyoutFooter>
+        <StackLayout Orientation="Vertical" BackgroundColor="#F6F6F6">
+            <Label Text="Pocket Trainer" FontAttributes="Bold" HorizontalOptions="Center"></Label>
+            <Label Text="© 2021, Skylice" FontAttributes="Bold" HorizontalOptions="Center"/> 
+            <Label Text="All Rights Reserved" FontAttributes="Bold" HorizontalOptions="Center"/> 
+        </StackLayout>
+    </Shell.FlyoutFooter>
+
+</Shell>

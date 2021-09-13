@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="launcher_background">#050505</color>
+    <color name="colorPrimary">#297B41</color>
+    <color name="colorPrimaryDark">#1D542D</color>
+    <color name="colorAccent">#34A355</color>
+    <color name="splash_background">#34A355</color>
+    <color name="PrimColor">#1F1F1F</color>
+    <color name="ListViewSelected">#96BCE3</color>
+</resources>
