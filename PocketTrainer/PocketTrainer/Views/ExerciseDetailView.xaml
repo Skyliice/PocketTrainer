@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PocketTrainer.Views.ExerciseDetailView" Title="{Binding SelectedExercise.Name}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Image Source="{Binding SelectedExercise.ImagePath}"></Image>
+        <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" BindableLayout.ItemsSource="{Binding SelectedExercise.MuscleGroups}" >
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="5" CornerRadius="10" BorderColor="Black">
+                            <Label FontSize="18" Text="{Binding Name}"></Label>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+            <Label FontSize="20" Text="Описание:" HorizontalOptions="Center"></Label>
+            <Editor IsReadOnly="True" VerticalOptions="FillAndExpand" Text="{Binding SelectedExercise.Description}"></Editor>
+        </StackLayout>
+    </Grid>
+</ContentPage>

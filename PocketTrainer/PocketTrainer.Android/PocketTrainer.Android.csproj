@@ -79,7 +79,6 @@
         <AndroidResource Include="Resources\drawable\ic_action_more_vert.png" />
         <AndroidResource Include="Resources\drawable\ic_action_show_chart.png" />
         <AndroidResource Include="Resources\drawable\ic_action_sports.png" />
-        <AndroidResource Include="Resources\drawable\ic_launcher.png" />
         <AndroidResource Include="Resources\drawable\notepad.png" />
         <AndroidResource Include="Resources\drawable\split.png" />
         <AndroidResource Include="Resources\layout\Tabbar.axml" />
