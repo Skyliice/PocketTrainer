@@ -3,6 +3,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="PocketTrainer.Views.ExerciseListView">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -10,7 +11,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
-        <ListView ItemsSource="{Binding Exercises}" RowHeight="70" SeparatorVisibility="None" SelectionMode="None">
+        <ListView ItemsSource="{Binding Exercises}" RowHeight="90" SeparatorVisibility="None" CachingStrategy="RetainElement" SelectionMode="None">
             <ListView.Behaviors>
                 <converters:EventToCommandBehavior EventName="ItemTapped" Command="{Binding TappedItem}" EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}">
                 </converters:EventToCommandBehavior>
@@ -18,9 +19,11 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Frame BorderColor="Black" Padding="5" Margin="10,5" CornerRadius="10">
+                        <Frame BorderColor="Black" Padding="5" Margin="10,5" CornerRadius="20">
                             <StackLayout Orientation="Horizontal" Margin="5,10">
-                                <Image Source="{Binding ImagePath}" HeightRequest="40" WidthRequest="40"></Image>
+                                <Frame Padding="0" CornerRadius="30" HeightRequest="70" WidthRequest="70">
+                                    <Image Source="{Binding ImagePath}"  Aspect="Fill"></Image>
+                                </Frame>
                                 <Label FontSize="20" Text="{Binding Name}" VerticalOptions="Center"></Label>
                             </StackLayout>
                         </Frame>

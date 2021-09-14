@@ -106,7 +106,10 @@
         <Reference Include="Xamarin.iOS" />
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+        <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
+        <PackageReference Include="Xamarin.Plugin.Calendar" Version="1.4.5304" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\PocketTrainer\PocketTrainer.csproj">

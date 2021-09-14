@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+using PocketTrainer.Entities;
 
 namespace PocketTrainer.Models
 {
@@ -15,5 +16,6 @@ namespace PocketTrainer.Models
         public string ImagePath { get; set; }
         [JsonProperty]
         public List<MuscleGroup> MuscleGroups { get; set; } 
+        public List<Sets> SetsList { get; set; }
     }
 }

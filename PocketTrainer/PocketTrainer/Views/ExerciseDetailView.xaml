@@ -2,25 +2,31 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="PocketTrainer.Views.ExerciseDetailView" Title="{Binding SelectedExercise.Name}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Source="{Binding SelectedExercise.ImagePath}"></Image>
-        <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" BindableLayout.ItemsSource="{Binding SelectedExercise.MuscleGroups}" >
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Padding="5" CornerRadius="10" BorderColor="Black">
-                            <Label FontSize="18" Text="{Binding Name}"></Label>
-                        </Frame>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
+        <Frame Margin="20" CornerRadius="20" Padding="0">
+            <forms:CachedImage Source="{Binding SelectedExercise.ImagePath}" Aspect="AspectFill"></forms:CachedImage>
+        </Frame>
+        <ScrollView Grid.Row="1">
+            <StackLayout  VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" BindableLayout.ItemsSource="{Binding SelectedExercise.MuscleGroups}" >
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="5" CornerRadius="10" BorderColor="Black">
+                                <Label FontSize="18" Text="{Binding Name}"></Label>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+                <Label FontSize="20" Text="Описание:" HorizontalOptions="Center"></Label>
+                <Editor IsReadOnly="True" VerticalOptions="FillAndExpand" Text="{Binding SelectedExercise.Description}"></Editor>
             </StackLayout>
-            <Label FontSize="20" Text="Описание:" HorizontalOptions="Center"></Label>
-            <Editor IsReadOnly="True" VerticalOptions="FillAndExpand" Text="{Binding SelectedExercise.Description}"></Editor>
-        </StackLayout>
+        </ScrollView>
+        
     </Grid>
 </ContentPage>
