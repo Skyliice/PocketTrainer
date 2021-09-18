@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using PocketTrainer.Entities;
 using PocketTrainer.Models;
 using Xamarin.Forms;
+using Sets = PocketTrainer.Models.Sets;
 
 namespace PocketTrainer.ViewModels
 {

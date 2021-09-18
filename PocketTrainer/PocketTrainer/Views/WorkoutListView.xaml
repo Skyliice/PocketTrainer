@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="PocketTrainer.Views.WorkoutListView" Title="Программы тренировок">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <behaviors:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <CollectionView ItemsSource="{Binding Workouts}" ItemsLayout="VerticalGrid, 2" SelectionMode="Single" SelectionChangedCommand="{Binding SelectionChanged}" SelectedItem="{Binding SelectedWorkout}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Frame Padding="0" BorderColor="White" CornerRadius="20" HeightRequest="150" WidthRequest="100" Margin="10">
+                            <Grid>
+                                <Image Source="{Binding ImagePath}" Aspect="AspectFill"></Image>
+                                <Frame BackgroundColor="Black" Opacity="0.3"></Frame>
+                                <Label Text="{Binding Name}" FontSize="16" TextColor="White" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="Center"></Label>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

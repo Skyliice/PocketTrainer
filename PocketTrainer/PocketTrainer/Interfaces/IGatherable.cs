@@ -8,6 +8,8 @@ namespace PocketTrainer.Interfaces
     {
         public Task<List<MuscleGroup>> GetMuscleGroups();
         public Task<List<Exercise>> GetExercises();
+        public Task<List<Workout>> GetWorkouts();
+        public Task<List<WorkoutDay>> GetWorkoutDays();
 
     }
 }

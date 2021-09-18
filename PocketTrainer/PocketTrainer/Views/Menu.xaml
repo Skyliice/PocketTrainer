@@ -24,7 +24,7 @@
                       Shell.BackgroundColor="#1d542d"
                       FlyoutDisplayOptions="AsMultipleItems">
               <ShellContent Title="Главная" IsTabStop="True" Icon="ic_action_main.png" ContentTemplate="{DataTemplate views:MainView}"/>
-              <ShellContent Title="Список программ тренировок" Icon="ic_action_sports.png" IsTabStop="True"/>
+              <ShellContent Title="Список программ тренировок" Icon="ic_action_sports.png" IsTabStop="True" ContentTemplate="{DataTemplate views:WorkoutListView}"/>
               <ShellContent Title="Список упражнений" ContentTemplate="{DataTemplate views:MuscleGroupsView}" Icon="split.png" IsTabStop="True"/>
               <ShellContent Title="Расчёт индекса массы тела" Icon="ic_action_calculate.png" IsTabStop="True"></ShellContent>
               <ShellContent Title="Статистика" Icon="ic_action_show_chart.png" IsTabStop="True"/>

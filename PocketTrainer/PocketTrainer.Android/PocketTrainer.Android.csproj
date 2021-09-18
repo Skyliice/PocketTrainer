@@ -46,6 +46,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.12" />
         <PackageReference Include="Xamarin.AndroidX.Core" Version="1.6.0.1" />
         <PackageReference Include="Xamarin.AndroidX.MediaRouter" Version="1.2.4.1" />
         <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.2.1.1" />
@@ -82,6 +83,7 @@
         <AndroidResource Include="Resources\drawable\ic_action_more_vert.png" />
         <AndroidResource Include="Resources\drawable\ic_action_show_chart.png" />
         <AndroidResource Include="Resources\drawable\ic_action_sports.png" />
+        <AndroidResource Include="Resources\drawable\ic_loading_image.gif" />
         <AndroidResource Include="Resources\drawable\notepad.png" />
         <AndroidResource Include="Resources\drawable\split.png" />
         <AndroidResource Include="Resources\layout\Tabbar.axml" />

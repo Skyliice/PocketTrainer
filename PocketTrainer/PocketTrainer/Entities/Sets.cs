@@ -5,7 +5,7 @@ using SQLite;
 namespace PocketTrainer.Entities
 {
     [Table(name:"Sets")]
-    public class Sets : INotifyPropertyChanged
+    public class Sets
     {
         [PrimaryKey,AutoIncrement]
         public int ID { get; set; }
@@ -14,11 +14,5 @@ namespace PocketTrainer.Entities
         public int WorkoutDayID { get; set; }
         public float Weight { get; set; }
         
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

@@ -26,5 +26,21 @@ namespace PocketTrainer
             var rslt = JsonConvert.DeserializeObject<List<Exercise>>(resultjson);
             return rslt;
         }
+
+        public async Task<List<Workout>> GetWorkouts()
+        {
+            var client = new HttpClient();
+            string resultjson = await client.GetStringAsync(url+"getworkouts.php");
+            var rslt = JsonConvert.DeserializeObject<List<Workout>>(resultjson);
+            return rslt;
+        }
+
+        public async Task<List<WorkoutDay>> GetWorkoutDays()
+        {
+            var client = new HttpClient();
+            string resultjson = await client.GetStringAsync(url+"getworkoutdays.php");
+            var rslt = JsonConvert.DeserializeObject<List<WorkoutDay>>(resultjson);
+            return rslt;
+        }
     }
 }
