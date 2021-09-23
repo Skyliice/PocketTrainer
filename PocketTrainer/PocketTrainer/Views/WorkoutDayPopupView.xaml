@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="http://rotorgames.com"
+             xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="PocketTrainer.Views.WorkoutDayPopupView" >
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <behaviors:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+        <Grid HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="600" WidthRequest="350">
+            <Frame CornerRadius="20" Margin="5" Padding="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Frame BackgroundColor="#1D542D">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <ImageButton HorizontalOptions="Start" Command="{Binding BackCommand}" BackgroundColor="Transparent" Source="ic_action_arrow_back.png"></ImageButton>
+                            <Label Grid.Column="1" Text="Выберите тренировочный день" FontSize="16" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"></Label> 
+                        </Grid>
+                    </Frame>
+                    <ListView Grid.Row="1" SelectionMode="None" RowHeight="80" SeparatorVisibility="None" ItemsSource="{Binding CurrentWorkoutDays}">
+                        <ListView.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding TappedItem}" EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}">
+                            </behaviors:EventToCommandBehavior>
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame BorderColor="Black" Padding="5" Margin="10,5" CornerRadius="10">
+                                        <Label FontSize="20" Text="{Binding Name}" VerticalOptions="Center"></Label>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+                
+            </Frame>
+            
+        </Grid>
+</pages:PopupPage>

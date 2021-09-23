@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="http://rotorgames.com"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="PocketTrainer.Views.ExerciseDetailPopupView">
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <Grid HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="600" WidthRequest="350">
+        <Frame CornerRadius="20" Margin="5" Padding="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Frame BackgroundColor="#1D542D">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ImageButton HorizontalOptions="Start" Command="{Binding BackCommand}" BackgroundColor="Transparent" Source="ic_action_arrow_back.png"></ImageButton>
+                        <Label Grid.Column="1" Text="{Binding SelectedExercise.Name}" FontSize="16" VerticalOptions="Center"  TextColor="White"></Label> 
+                    </Grid>
+                </Frame>
+                <Frame Grid.Row="1" Margin="20" CornerRadius="20" Padding="0">
+                    <forms:CachedImage LoadingPlaceholder="ic_loading_image.gif" Source="{Binding SelectedExercise.ImagePath}" Aspect="AspectFill"></forms:CachedImage>
+                </Frame>
+                <ScrollView Grid.Row="2">
+                    <StackLayout  VerticalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" BindableLayout.ItemsSource="{Binding SelectedExercise.MuscleGroups}" >
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame Padding="5" CornerRadius="10" BorderColor="Black">
+                                        <Label FontSize="18" Text="{Binding Name}"></Label>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                        <Label FontSize="20" Text="Описание:" HorizontalOptions="Center"></Label>
+                        <Editor Margin="10,0" IsReadOnly="True" VerticalOptions="FillAndExpand" Text="{Binding SelectedExercise.Description}"></Editor>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+        </Frame>
+        
+        
+    </Grid>
+</pages:PopupPage>

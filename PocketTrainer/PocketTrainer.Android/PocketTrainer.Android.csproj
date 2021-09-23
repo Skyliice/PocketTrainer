@@ -46,15 +46,19 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.12" />
         <PackageReference Include="Xamarin.AndroidX.Core" Version="1.6.0.1" />
         <PackageReference Include="Xamarin.AndroidX.MediaRouter" Version="1.2.4.1" />
         <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.2.1.1" />
+        <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+        <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
         <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
         <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
         <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.3" />
         <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.3" />
         <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.3" />
+        <PackageReference Include="Xamarin.Plugin.Calendar" Version="1.4.5304" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MainActivity.cs" />
@@ -79,7 +83,7 @@
         <AndroidResource Include="Resources\drawable\ic_action_more_vert.png" />
         <AndroidResource Include="Resources\drawable\ic_action_show_chart.png" />
         <AndroidResource Include="Resources\drawable\ic_action_sports.png" />
-        <AndroidResource Include="Resources\drawable\ic_launcher.png" />
+        <AndroidResource Include="Resources\drawable\ic_loading_image.gif" />
         <AndroidResource Include="Resources\drawable\notepad.png" />
         <AndroidResource Include="Resources\drawable\split.png" />
         <AndroidResource Include="Resources\layout\Tabbar.axml" />

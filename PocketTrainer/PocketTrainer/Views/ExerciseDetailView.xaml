@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="PocketTrainer.Views.ExerciseDetailView" Title="{Binding SelectedExercise.Name}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Frame Margin="20" CornerRadius="20" Padding="0">
+            <forms:CachedImage LoadingPlaceholder="ic_loading_image.gif" Source="{Binding SelectedExercise.ImagePath}" Aspect="AspectFill"></forms:CachedImage>
+        </Frame>
+        <ScrollView Grid.Row="1">
+            <StackLayout  VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" BindableLayout.ItemsSource="{Binding SelectedExercise.MuscleGroups}" >
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="5" CornerRadius="10" BorderColor="Black">
+                                <Label FontSize="18" Text="{Binding Name}"></Label>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+                <Label FontSize="20" Text="Описание:" HorizontalOptions="Center"></Label>
+                <Editor Margin="10,0" IsReadOnly="True" VerticalOptions="FillAndExpand" Text="{Binding SelectedExercise.Description}"></Editor>
+            </StackLayout>
+        </ScrollView>
+        
+    </Grid>
+</ContentPage>
