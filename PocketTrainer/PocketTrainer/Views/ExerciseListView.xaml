@@ -4,16 +4,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             x:Class="PocketTrainer.Views.ExerciseListView">
+             x:Class="PocketTrainer.Views.ExerciseListView" Shell.NavBarIsVisible="False">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
+            <converters:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
-        <ListView ItemsSource="{Binding Exercises}" RowHeight="90" SeparatorVisibility="None" CachingStrategy="RetainElement" SelectionMode="None">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" BackgroundColor="#1D542D">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ImageButton Grid.Column="0" BackgroundColor="Transparent" Command="{Binding BackCommand}" Source="ic_action_arrow_back.png" HeightRequest="25" Margin="15,0,0,0"></ImageButton>
+            <SearchBar Grid.Column="1" Text="{Binding SearchString}" PlaceholderColor="White" CancelButtonColor="White" TextColor="White" Placeholder="Поиск по названию">
+                <SearchBar.Behaviors>
+                    <converters:EventToCommandBehavior EventName="TextChanged" Command="{Binding SearchCommand}"></converters:EventToCommandBehavior>
+                </SearchBar.Behaviors>
+            </SearchBar>
+            <Button Grid.Column="2" IsVisible="{Binding CanChooseExercise}" Command="{Binding PickExerciseCommand}" BackgroundColor="Transparent" TextColor="White" Text="Выбрать"></Button>
+        </Grid>
+        <ListView Grid.Row="1" ItemsSource="{Binding Exercises}" SelectedItem="{Binding SelectedExercise}" RowHeight="90" SeparatorVisibility="None" CachingStrategy="RetainElement" SelectionMode="Single">
             <ListView.Behaviors>
-                <converters:EventToCommandBehavior EventName="ItemTapped" Command="{Binding TappedItem}" EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}">
+                <converters:EventToCommandBehavior EventName="ItemSelected" Command="{Binding TappedItem}" EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}">
                 </converters:EventToCommandBehavior>
             </ListView.Behaviors>
             <ListView.ItemTemplate>

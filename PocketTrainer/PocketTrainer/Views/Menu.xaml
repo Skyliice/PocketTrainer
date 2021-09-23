@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PocketTrainer"
              xmlns:views="clr-namespace:PocketTrainer.Views;assembly=PocketTrainer"
-             x:Class="PocketTrainer.Menu">
+             x:Class="PocketTrainer.Menu" >
 
     <Shell.FlyoutHeader>
         <Grid HeightRequest="150" Padding="0">

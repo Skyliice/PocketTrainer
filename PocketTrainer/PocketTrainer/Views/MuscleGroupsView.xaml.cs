@@ -12,10 +12,16 @@ namespace PocketTrainer.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MuscleGroupsView : ContentPage
     {
+        public MuscleGroupsView(bool isPickingExercise)
+        {
+            InitializeComponent();
+            BindingContext = new MuscleGroupsViewModel(isPickingExercise) {Navigation = this.Navigation};
+        }
+        
         public MuscleGroupsView()
         {
             InitializeComponent();
-            BindingContext = new MuscleGroupsViewModel() {Navigation = this.Navigation};
+            BindingContext = new MuscleGroupsViewModel(false) {Navigation = this.Navigation};
         }
     }
 }

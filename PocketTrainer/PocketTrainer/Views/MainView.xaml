@@ -3,13 +3,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
-             x:Class="PocketTrainer.Views.MainView" Title="{Binding CurrentDate}">
+             x:Class="PocketTrainer.Views.MainView" Title="{Binding CurrentDate}" >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="calendar_icon.png" Command="{Binding CalendarVisibilityCommand}"></ToolbarItem>
+        <ToolbarItem IconImageSource="ic_action_add.png" Command="{Binding AddNewRoutineCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <controls:Calendar Grid.Row="0" FooterSectionVisible="False" Culture="{Binding CurrentCulture}" ShowYearPicker="False" TodayOutlineColor="Green" SelectedDayBackgroundColor="Green" MonthLabelColor="Green" ></controls:Calendar>
+        <controls:Calendar Grid.Row="0" DayTappedCommand="{Binding DayTappedCommand}" SelectedDate="{Binding CurrentDate}" FooterSectionVisible="False" Culture="{Binding CurrentCulture}" IsVisible="{Binding IsCalendarVisible}" ShowYearPicker="False" TodayOutlineColor="Green" SelectedDayBackgroundColor="Green" MonthLabelColor="Green" ></controls:Calendar>
         <ListView Grid.Row="1" ItemsSource="{Binding CurrentExercises}" RowHeight="100" SelectionMode="None">
             <ListView.ItemTemplate>
                 <DataTemplate>

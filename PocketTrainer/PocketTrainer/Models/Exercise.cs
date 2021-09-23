@@ -16,6 +16,7 @@ namespace PocketTrainer.Models
         public string ImagePath { get; set; }
         [JsonProperty]
         public List<MuscleGroup> MuscleGroups { get; set; } 
+        public int Place { get; set; }
         public List<Sets> SetsList { get; set; }
     }
 }

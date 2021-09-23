@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace PocketTrainer.Entities
 {
@@ -9,10 +10,12 @@ namespace PocketTrainer.Entities
     {
         [PrimaryKey,AutoIncrement]
         public int ID { get; set; }
-        public int ExercisePlace { get; set; }
         public int RepsNumber { get; set; }
-        public int WorkoutDayID { get; set; }
+        [ForeignKey(typeof(WorkDayExJunction))]
+        public int WorkDayExJunctionID { get; set; }
         public float Weight { get; set; }
+        [ManyToOne]
+        public WorkDayExJunction WorkDayExJunction { get; set; }
         
     }
 }
