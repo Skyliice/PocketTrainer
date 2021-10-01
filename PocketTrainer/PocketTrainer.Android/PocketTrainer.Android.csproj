@@ -85,6 +85,7 @@
         <AndroidResource Include="Resources\drawable\ic_action_more_vert.png" />
         <AndroidResource Include="Resources\drawable\ic_action_show_chart.png" />
         <AndroidResource Include="Resources\drawable\ic_action_sports.png" />
+        <AndroidResource Include="Resources\drawable\ic_close.png" />
         <AndroidResource Include="Resources\drawable\ic_loading_image.gif" />
         <AndroidResource Include="Resources\drawable\notepad.png" />
         <AndroidResource Include="Resources\drawable\split.png" />

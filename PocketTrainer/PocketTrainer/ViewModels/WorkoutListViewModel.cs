@@ -28,10 +28,19 @@ namespace PocketTrainer.ViewModels
         }
 
         private Workout _selectedWorkout;
+        private bool _isPickingWorkout;
 
         public WorkoutListViewModel()
         {
             var dsource = DataSource.GetInstance();
+            SelectionChanged = new Command(SelectedItemChanged);
+            Workouts = new ObservableCollection<Workout>(dsource.GetWorkouts());
+        }
+        
+        public WorkoutListViewModel(bool isPickingWorkout)
+        {
+            var dsource = DataSource.GetInstance();
+            _isPickingWorkout = isPickingWorkout;
             SelectionChanged = new Command(SelectedItemChanged);
             Workouts = new ObservableCollection<Workout>(dsource.GetWorkouts());
         }
@@ -42,7 +51,7 @@ namespace PocketTrainer.ViewModels
                 return;
             var wrk = SelectedWorkout;
             SelectedWorkout = null;
-            await Navigation.PushPopupAsync(new WorkoutDayPopupView(wrk));
+            await Navigation.PushPopupAsync(new WorkoutDayPopupView(wrk,_isPickingWorkout));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

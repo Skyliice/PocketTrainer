@@ -5,6 +5,7 @@ namespace PocketTrainer.Models
 {
     public class Sets : INotifyPropertyChanged
     {
+        public int ID { get; set; }
         public int RepsNumber
         {
             get => _repsNumber;
@@ -26,7 +27,7 @@ namespace PocketTrainer.Models
 
         private int _repsNumber;
         private float _weight;
-        
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

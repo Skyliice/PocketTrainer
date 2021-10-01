@@ -116,7 +116,6 @@ namespace PocketTrainer.ViewModels
                 await Navigation.PopToRootAsync();
                 ldb.WaitHandle.Set();
             }
-                
         }
 
         private async void GoBackToMuscleGroup()

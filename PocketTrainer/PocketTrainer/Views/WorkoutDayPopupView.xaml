@@ -29,31 +29,30 @@
                         <RowDefinition Height="70"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Frame BackgroundColor="#1D542D">
+                    <Frame BackgroundColor="#1D542D" Padding="0">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <ImageButton HorizontalOptions="Start" Command="{Binding BackCommand}" BackgroundColor="Transparent" Source="ic_action_arrow_back.png"></ImageButton>
+                            <ImageButton HeightRequest="30" Margin="10,0,0,0"  HorizontalOptions="Center" Command="{Binding BackCommand}" BackgroundColor="Transparent" Source="ic_action_arrow_back.png"></ImageButton>
                             <Label Grid.Column="1" Text="Выберите тренировочный день" FontSize="16" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"></Label> 
+                            <Button Text="Выбрать" Command="{Binding ChooseWorkoutDayCommand}" TextColor="White" BackgroundColor="Transparent" Grid.Column="2" HorizontalOptions="Center" IsVisible="{Binding IsChosen}"></Button>
                         </Grid>
                     </Frame>
-                    <ListView Grid.Row="1" SelectionMode="None" RowHeight="80" SeparatorVisibility="None" ItemsSource="{Binding CurrentWorkoutDays}">
-                        <ListView.Behaviors>
-                            <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding TappedItem}" EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}">
-                            </behaviors:EventToCommandBehavior>
-                        </ListView.Behaviors>
-                        <ListView.ItemTemplate>
+                    <CollectionView Grid.Row="1" SelectionMode="Single" SelectedItem="{Binding SelectedWorkoutDay}" SelectionChangedCommand="{Binding TappedItem}" ItemsSource="{Binding CurrentWorkoutDays}">
+                        <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
-                                    <Frame BorderColor="Black" Padding="5" Margin="10,5" CornerRadius="10">
+                                <ContentView>
+                                    <Frame BorderColor="Black" Padding="5" HeightRequest="60" Margin="5,5" CornerRadius="10">
                                         <Label FontSize="20" Text="{Binding Name}" VerticalOptions="Center"></Label>
                                     </Frame>
-                                </ViewCell>
+                                </ContentView>
+                                
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </Grid>
                 
             </Frame>
