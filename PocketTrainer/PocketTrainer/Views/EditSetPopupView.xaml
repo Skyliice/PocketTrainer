@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="http://rotorgames.com"
+             xmlns:converters="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="PocketTrainer.Views.EditSetPopupView">
+    <pages:PopupPage.Animation>
+        <pages:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <Frame Padding="0" CornerRadius="20" HorizontalOptions="Center" HeightRequest="320" WidthRequest="300" VerticalOptions="Center">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="#1D542D">
+                <Grid>
+                    <Label Text="Редактирование подхода" FontSize="16" VerticalOptions="Center"  TextColor="White"></Label> 
+                </Grid>
+            </Frame>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackLayout Orientation="Vertical" Grid.Row="0">
+                    <Label Text="Повторения:" HorizontalOptions="Center" FontSize="20"></Label>
+                    <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                        <Entry Text="{Binding EditableRepsNumber}" WidthRequest="50" MaxLength="3" Keyboard="Numeric">
+                            <Entry.Behaviors>
+                                <converters:EventToCommandBehavior EventName="TextChanged" Command="{Binding RepsNumberChangedCommand}"/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label Text="Пвт" FontSize="20" VerticalOptions="Center"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" Grid.Row="1">
+                    <Label Text="Вес:" HorizontalOptions="Center" FontSize="20"></Label>
+                    <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                        <Entry Text="{Binding EditableWeight}" WidthRequest="50" MaxLength="5" Keyboard="Numeric">
+                            <Entry.Behaviors>
+                                <converters:EventToCommandBehavior EventName="TextChanged" Command="{Binding WeightChangedCommand}"/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label Text="Кг" FontSize="20" VerticalOptions="Center"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <Grid Grid.Row="2" ColumnSpacing="0" HorizontalOptions="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" BackgroundColor="Transparent" Text="Удалить" Command="{Binding DeleteCommand}" TextColor="Green" FontAttributes="Bold"></Button>
+                    <Button Grid.Column="1" BackgroundColor="Transparent" Text="Отмена" Command="{Binding CancelCommand}" TextColor="Green" FontAttributes="Bold"></Button>
+                    <Button Grid.Column="2" BackgroundColor="Transparent" Text="Ок" Command="{Binding OkCommand}" IsEnabled="{Binding IsOkEnabled}" TextColor="Green" FontAttributes="Bold"></Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Frame>
+    
+</pages:PopupPage>

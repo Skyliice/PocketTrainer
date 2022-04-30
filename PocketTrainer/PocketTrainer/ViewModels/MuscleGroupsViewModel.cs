@@ -13,8 +13,10 @@ namespace PocketTrainer.ViewModels
         public INavigation Navigation;
         public IAsyncCommand<MuscleGroup> TappedItem { get; protected set; }
 
-        public MuscleGroupsViewModel()
+        private bool _isPickingExercise;
+        public MuscleGroupsViewModel(bool isPickingExercise)
         {
+            _isPickingExercise = isPickingExercise;
             TappedItem = new AsyncCommand<MuscleGroup>(GoToNextPage);
             MuscleGroups = new List<MuscleGroup>();
             var dsource = DataSource.GetInstance();
@@ -23,7 +25,7 @@ namespace PocketTrainer.ViewModels
 
         private async Task GoToNextPage(MuscleGroup pickedMuscleGroup)
         {
-            await Navigation.PushAsync(new ExerciseListView(pickedMuscleGroup.ID));
+            await Navigation.PushAsync(new ExerciseListView(pickedMuscleGroup.ID,_isPickingExercise));
         }
     }
 }

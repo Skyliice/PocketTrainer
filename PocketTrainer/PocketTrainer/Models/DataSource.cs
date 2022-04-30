@@ -36,6 +36,13 @@ namespace PocketTrainer.Models
             _instance._exercises = Task.Run(() => _gatherer.GetExercises()).Result;
             _instance._workouts = Task.Run(() => _gatherer.GetWorkouts()).Result;
             _instance._workoutDays = Task.Run(() => _gatherer.GetWorkoutDays()).Result;
+            foreach (var wDay in _instance._workoutDays)
+            {
+                foreach (var wDayExercise in wDay.Exercises)
+                {
+                    wDayExercise.FillSetsList();
+                }
+            }
         }
 
         public List<MuscleGroup> GetMuscleGroups()

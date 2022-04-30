@@ -3,18 +3,31 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
-             x:Class="PocketTrainer.Views.MainView" Title="{Binding CurrentDate}">
+             x:Class="PocketTrainer.Views.MainView" Title="{Binding CurrentDate}" >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="calendar_icon.png" Command="{Binding CalendarVisibilityCommand}"></ToolbarItem>
+        <ToolbarItem IconImageSource="ic_action_add.png" Command="{Binding AddNewRoutineCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <controls:Calendar Grid.Row="0" FooterSectionVisible="False" Culture="{Binding CurrentCulture}" ShowYearPicker="False" TodayOutlineColor="Green" SelectedDayBackgroundColor="Green" MonthLabelColor="Green" ></controls:Calendar>
-        <ListView Grid.Row="1" ItemsSource="{Binding CurrentExercises}" RowHeight="100" SelectionMode="None">
+        <controls:Calendar Grid.Row="0" Events="{Binding EventsCollection}" EventIndicatorColor="Green" EventIndicatorSelectedColor="White" EventIndicatorSelectedTextColor="White" DayTappedCommand="{Binding DayTappedCommand}" SelectedDate="{Binding CurrentDate}" FooterSectionVisible="False" Culture="{Binding CurrentCulture}" IsVisible="{Binding IsCalendarVisible}" ShowYearPicker="False" TodayOutlineColor="Green" SelectedDayBackgroundColor="Green" MonthLabelColor="Green" ></controls:Calendar>
+        <Label Grid.Row="1" FontSize="32" IsVisible="{Binding IsFreeDay}" Text="Нет тренировки" Opacity="0.7" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"></Label>
+        <StackLayout Grid.Row="1">
+            <Grid HeightRequest="20"  IsVisible="{Binding HasWday}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Margin="10,0,0,0" Text="Список упражнений"></Label>
+                <ImageButton HorizontalOptions="End" Margin="0,0,10,0" Source="ic_close.png" HeightRequest="25" Command="{Binding DeleteWDayCommand}" BackgroundColor="Transparent"></ImageButton>
+            </Grid>
+            <ListView x:Name="ExerciseLV" HasUnevenRows="True" SeparatorVisibility="None" RefreshControlColor="Green" IsRefreshing="{Binding IsRefreshing}" ItemsSource="{Binding CurrentExercises}" SelectionMode="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                       <Frame BorderColor="Gray" CornerRadius="20" Margin="10,0" Padding="10">
+                       <Frame BorderColor="Gray" CornerRadius="20" Margin="10,5" Padding="10">
                            <Grid>
                                <Grid.ColumnDefinitions>
                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -22,16 +35,23 @@
                                    <ColumnDefinition Width="*"></ColumnDefinition>
                                </Grid.ColumnDefinitions>
                                <Frame Grid.Column="0" BorderColor="Gray" CornerRadius="100" HeightRequest="40" WidthRequest="40" VerticalOptions="Center" Padding="0">
-                                   <Image HeightRequest="30" WidthRequest="30" Source="{Binding ImagePath}" Aspect="AspectFill"></Image>
+                                   <Image HeightRequest="30" WidthRequest="30" Source="{Binding ImagePath}" Aspect="AspectFill">
+                                       <Image.GestureRecognizers>
+                                           <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding BindingContext.ImageClickedCommand, Source={x:Reference Name=ExerciseLV}}" CommandParameter="{Binding}"></TapGestureRecognizer>
+                                       </Image.GestureRecognizers>
+                                   </Image>
                                </Frame>
                                <StackLayout Grid.Column="1" Orientation="Vertical">
                                    <Label FontSize="16" VerticalOptions="Center" FontAttributes="Bold" Text="{Binding Name}"></Label>
                                    <ScrollView Orientation="Horizontal">
                                        <StackLayout Orientation="Horizontal">
-                                           <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding SetsList}">
+                                           <StackLayout x:Name="SetsStack" Orientation="Horizontal" BindableLayout.ItemsSource="{Binding SetsList}">
                                                <BindableLayout.ItemTemplate>
                                                    <DataTemplate>
                                                        <StackLayout Orientation="Vertical">
+                                                           <StackLayout.GestureRecognizers>
+                                                               <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Path= BindingContext.SetTapCommand, Source={x:Reference Name=ExerciseLV}}" CommandParameter="{Binding }"></TapGestureRecognizer>
+                                                           </StackLayout.GestureRecognizers>
                                                            <StackLayout Orientation="Horizontal" Spacing="0">
                                                                <Label Text="{Binding RepsNumber}" FontSize="14" FontAttributes="Bold" TextColor="DarkGray"></Label>
                                                                <Label Text=" пвт" FontSize="14" FontAttributes="Bold" TextColor="DarkGray"></Label>
@@ -44,16 +64,18 @@
                                                    </DataTemplate>
                                                </BindableLayout.ItemTemplate>
                                            </StackLayout>
-                                           <ImageButton BackgroundColor="Transparent" Source="ic_action_add_black.png" HeightRequest="20" WidthRequest="20"></ImageButton>
+                                           <ImageButton BackgroundColor="Transparent" Source="ic_action_add_black.png" Command="{Binding Path= BindingContext.AddSetCommand, Source={x:Reference Name=ExerciseLV}}" CommandParameter="{Binding}" HeightRequest="20" WidthRequest="20"></ImageButton>
                                        </StackLayout>
                                    </ScrollView>
                                </StackLayout>
-                               <ImageButton Grid.Column="2" Source="ic_action_more_vert.png" HorizontalOptions="End" BackgroundColor="Transparent" VerticalOptions="Start" HeightRequest="30" WidthRequest="30"></ImageButton>
+                               <ImageButton Grid.Column="2" Source="ic_action_more_vert.png" Command="{Binding Path= BindingContext.ExerciseCommand, Source={x:Reference Name=ExerciseLV}}" CommandParameter="{Binding}" HorizontalOptions="End" BackgroundColor="Transparent" VerticalOptions="Start" HeightRequest="30" WidthRequest="30"></ImageButton>
                            </Grid>
                        </Frame> 
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        </StackLayout>
+        
     </Grid>
 </ContentPage>
